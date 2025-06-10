@@ -1,0 +1,10 @@
+.why-us-section {
+    background: var(--primary-100);
+    text-align: center;
+    padding: 4rem;
+    color: var(--primary-900);
+}
+
+.why-cards-container {
+    margin-top: 4rem;
+}

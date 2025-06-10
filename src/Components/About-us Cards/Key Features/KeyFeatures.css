@@ -1,0 +1,108 @@
+.keyfeatures-card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+    max-width: 500px;
+    padding: 1.8rem;
+    border-radius: 12px;
+    background: var(--neutral-50);
+    color: var(--foreground);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    border-left: 6px solid #0d948948;
+}
+
+.keyfeatures-card::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    right: -12px;
+    width: 120px;
+    height: 25%;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 80px;
+    background: rgba(13, 148, 136, 0.2);
+    opacity: 0.7;
+    transform: scale(0.9) translateX(-5px);
+    transition: all 0.3s ease-in-out;
+}
+
+.keyfeatures-icon {
+    padding: 0.8rem;
+    border-radius: 10px;
+    color: #ffffff;
+    background: #0d948998;
+    font-size: 1.5rem;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+}
+
+.keyfeatures-card h4 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--foreground);
+}
+
+.keyfeatures-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--foreground);
+    text-align: justify;
+}
+
+.keyfeatures-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    border-left: 6px solid #0d9488;
+}
+
+.keyfeatures-card:hover .keyfeatures-icon {
+    background: #0d9488;
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(92, 140, 245, 0.4);
+    transform: translateY(-3px);
+}
+
+.keyfeatures-card:hover::after {
+    background: #0d9488;
+    transform: scale(1.7) translateX(-5px) translateY(-3px);
+    opacity: 1;
+}
+
+.keyfeatures {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.keyfeatures li {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--foreground);
+    padding: 0.0rem 0rem 0.9rem 0.8rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.keyfeatures li span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 2.0rem;
+    height: 2.0rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #0d9488;
+    background: #79e7de5b;
+    border-radius: 50%;
+    margin-right: 1rem;
+    box-shadow: 0 3px 6px rgba(92, 140, 245, 0.4);
+    transition: box-shadow 0.3s ease-in-out;
+}

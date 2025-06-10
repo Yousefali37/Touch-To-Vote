@@ -1,0 +1,47 @@
+/* Filter Icon */
+.filterIcon {
+    font-size: 1rem;
+    color: var(--primary-600);
+}
+
+/* Compact Select Dropdown */
+.form-select-sm {
+    min-width: 130px;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.form-select-sm:focus {
+    border-color: #0d9488;
+    outline: none;
+}
+
+.input-group-sm .input-group-text {
+    background-color: #0d9488;
+    color: white;
+    border: none;
+    border-radius: 6px 0 0 6px;
+    padding: 0.4rem;
+}
+
+.input-group-sm .form-control {
+    border-radius: 0 6px 6px 0;
+    padding: 0.4rem;
+}
+
+@media (max-width: 768px) {
+    .form-select-sm {
+        min-width: 110px;
+        padding: 0.3rem;
+    }
+
+    .input-group-sm .input-group-text {
+        padding: 0.3rem;
+    }
+
+    .input-group-sm .form-control {
+        padding: 0.3rem;
+    }
+}

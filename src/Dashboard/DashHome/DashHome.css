@@ -1,0 +1,20 @@
+.dashHome {
+    background: var(--primary-50);
+    display: flex;
+}
+
+.dashHome__outlet {
+    flex-grow: 1;
+}
+
+.dashHome__img-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashHome__img-container img {
+    max-width: 42rem;
+    height: auto;
+}

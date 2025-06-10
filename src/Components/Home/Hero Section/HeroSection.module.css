@@ -1,0 +1,193 @@
+/* Hero Section */
+.hero-section {
+    position: relative;
+    min-height: fit-content;
+    background: linear-gradient(135deg, #eeefe7, #162d3b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    flex-direction: column;
+    padding: 3rem 1rem;
+}
+
+/* Text Styles */
+.hero-text h1 {
+    color: #eeefe7;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-transform: capitalize;
+}
+
+.hero-text h1 span {
+    color: #162d3b;
+}
+
+.hero-text p {
+    text-align: center;
+    color: #162d3b;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+/* Buttons */
+.hero-buttons {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.hero-buttons button {
+    padding: 0.8rem 1.6rem;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    outline: none;
+}
+
+.btn-primary {
+    background-color: #162d3b;
+    color: #eeefe7;
+    box-shadow: 2px 2px 6px rgba(22, 45, 59, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #0f1f2a;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: #eeefe7;
+    color: #162d3b;
+    border: 2px solid #162d3b;
+}
+
+.btn-secondary:hover {
+    background-color: #162d3b;
+    color: #eeefe7;
+    transform: scale(1.05);
+}
+
+.btn-primary, .btn-secondary {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:active, .btn-secondary:active {
+    transform: scale(0.95);
+}
+
+.btn-primary::after, .btn-secondary::after {
+    content: "";
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: 50%;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: transform 0.4s ease, opacity 0.3s ease;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+}
+
+.btn-primary:active::after, .btn-secondary:active::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+}
+
+/* Hero Image */
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eeefe7;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 6px 6px 14px rgba(22, 45, 59, 0.08);
+    transition: all 0.3s ease-in-out;
+}
+
+.hero-image img {
+    max-width: 130px;
+    transition: transform 0.4s ease-in-out;
+}
+
+.hero-image img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+/* Start Quiz Button */
+.start-quiz {
+    padding: 1rem 1.6rem;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: none;
+    outline: none;
+    background-color: #162d3b;
+    color: #eeefe7;
+    box-shadow: 2px 2px 6px rgba(22, 45, 59, 0.3);
+}
+
+.start-quiz:hover {
+    background-color: #0f1f2a;
+    transform: scale(1.05);
+}
+
+.start-quiz:active {
+    transform: scale(0.95);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 2rem 1rem;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+    }
+
+    .hero-buttons button {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .hero-image img {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+
+    .hero-text p {
+        font-size: 0.9rem;
+    }
+
+    .hero-buttons button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .hero-image img {
+        max-width: 130px;
+    }
+}

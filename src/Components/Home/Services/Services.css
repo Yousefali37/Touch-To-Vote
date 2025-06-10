@@ -1,0 +1,12 @@
+.services {
+    text-align: center;
+}
+
+.services__container {
+    padding: 3rem;
+    background: var(--primary-50);
+}
+
+.services__cards-container {
+    margin-top: 5rem;
+}

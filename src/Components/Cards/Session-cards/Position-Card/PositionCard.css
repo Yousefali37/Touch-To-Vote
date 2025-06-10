@@ -1,0 +1,207 @@
+.position-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: var(--spacing-sm);
+}
+
+.position-card__container {
+    max-width: 380px;
+    min-height: 180px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.position-card__container:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.position-card__content {
+    text-align: center;
+    padding: var(--spacing-md);
+}
+
+.position-card__title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--neutral-900);
+    margin-bottom: var(--spacing-sm);
+}
+
+.position-card__title-value {
+    font-weight: 500;
+    color: var(--primary-700);
+}
+
+.position-card__description {
+    font-size: 1rem;
+    color: var(--neutral-600);
+    line-height: var(--line-height-base);
+    margin-bottom: var(--spacing-md);
+}
+
+.position-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: var(--neutral-800);
+    padding: var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    transition: background 0.3s ease-in-out;
+}
+
+.position-card__container:hover .position-card__footer {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.position-card__icon {
+    margin-right: var(--spacing-xs);
+    color: var(--primary-600);
+    font-size: 1.2rem;
+}
+
+.position-card__duration {
+    font-weight: 500;
+}
+
+.position-card__divider {
+    border: 0;
+    border-top: 1px solid var(--neutral-200);
+    margin: var(--spacing-md) 0;
+}
+
+.position-card__actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    padding: var(--spacing-sm);
+}
+
+.position-card__button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid var(--primary-600);
+    background: transparent;
+    color: var(--primary-600);
+}
+
+.position-card__button:hover {
+    background: var(--primary-600);
+    color: var(--background);
+    transform: scale(1.08);
+}
+
+.position-card__button:active {
+    transform: scale(1);
+}
+
+.position-card__button--primary {
+    background: var(--primary-600);
+    color: var(--background);
+    border: none;
+}
+
+.position-card__button--primary:hover {
+    background: var(--primary-700);
+    transform: scale(1.08);
+}
+
+.position-card__button--primary:active {
+    transform: scale(1);
+}
+
+.position-card__button--primary:disabled {
+    background: var(--background);
+    color: var(--neutral-900);
+    border: 1px solid var(--neutral-900);
+    cursor: not-allowed;
+}
+
+.position-card__button--primary:disabled:hover {
+    background: transparent;
+    color: var(--neutral-900);
+    border: 1px solid var(--neutral-900);
+    transform: scale(1);
+}
+
+.position-card__button--secondary {
+    background: transparent;
+    color: var(--primary-600);
+    border: 1px solid var(--primary-600);
+}
+
+.position-card__button--secondary:hover {
+    background: var(--primary-600);
+    color: var(--background);
+    transform: scale(1.08);
+}
+
+.position-card__button--secondary:active {
+    transform: scale(1);
+}
+
+.position-card__button--secondary:disabled {
+    color: var(--neutral-900);
+    border: 1px solid var(--neutral-900);
+    cursor: not-allowed;
+}
+
+.position-card__button--secondary:disabled:hover {
+    background: transparent;
+    color: var(--neutral-900);
+    border: 1px solid var(--neutral-900);
+    transform: scale(1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .position-card__container {
+        max-width: 100%;
+        padding: var(--spacing-md);
+    }
+
+    .position-card__title {
+        font-size: 1.3rem;
+    }
+
+    .position-card__description {
+        font-size: 0.9rem;
+    }
+
+    .position-card__button {
+        padding: var(--spacing-xs) var(--spacing-md);
+        font-size: 0.85rem;
+    }
+
+    .position-card__actions {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}

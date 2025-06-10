@@ -1,0 +1,75 @@
+/* Position Session Styles */
+.position-session {
+    width: 100%;
+    min-height: 100vh;
+    padding: 2rem 0;
+    background: var(--primary-50);
+}
+
+.position-session__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.position-session__empty-message {
+    text-align: center;
+    color: #666;
+    margin: 2rem 0;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.position-session__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.position-session__item {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.position-session__actions {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.position-session__submit-button {
+    padding: 0.75rem 2rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.position-session__submit-button:hover {
+    background-color: #3e8e41;
+}
+
+.position-session__submit-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.position-session__voter-id {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

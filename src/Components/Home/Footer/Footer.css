@@ -1,0 +1,61 @@
+.footer {
+    background-color: var(--primary-50);
+    color: var(--background);
+    padding: 4rem 4rem 0rem 4rem;
+    text-align: center;
+}
+
+.footer__input {
+    background: var(--neutral-200);
+    color: var(--background);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    width: 20%;
+    margin-right: 1rem;
+}
+
+.footer__button {
+    background: var(--primary-600);
+    color: var(--background);
+    font-weight: 500;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    margin-top: 3.5rem;
+}
+
+.footer__button:hover {
+    background: var(--primary-700);
+}
+
+.footer__newsletter .title {
+    color: var(--neutral-500);
+    margin-bottom: 1.2rem;
+}
+
+.footer__newsletter .title .title-highlight::after {
+    background: var(--primary-900);
+}
+
+.footer__logo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--neutral-500);
+}
+
+.footer__logo-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--neutral-400);
+}
+
+.footer__copyright {
+    margin-top: 2rem;
+    font-size: 0.875rem;
+    color: var(--neutral-500);
+}

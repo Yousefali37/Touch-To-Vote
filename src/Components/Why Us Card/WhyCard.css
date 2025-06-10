@@ -1,0 +1,69 @@
+.why-card {
+    background: var(--neutral-50);
+    border-radius: var(--radius-lg);
+    color: var(--foreground);
+    text-align: center;
+    padding: 1.5rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    -webkit-border-radius: var(--radius-lg);
+    -moz-border-radius: var(--radius-lg);
+    -ms-border-radius: var(--radius-lg);
+    -o-border-radius: var(--radius-lg);
+}
+
+.why-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 16px;
+    transition: box-shadow 0.5s ease-in-out;
+    -webkit-transition: box-shadow 0.5s ease-in-out;
+    -moz-transition: box-shadow 0.5s ease-in-out;
+    -ms-transition: box-shadow 0.5s ease-in-out;
+    -o-transition: box-shadow 0.5s ease-in-out;
+}
+
+
+.why-card-icon-container {
+    border-radius: 99999px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto 1.5rem auto;
+    -webkit-border-radius: 99999px;
+    -moz-border-radius: 99999px;
+    -ms-border-radius: 99999px;
+    -o-border-radius: 99999px;
+}
+
+.why-card-icon {
+    width: 2.0rem;
+    height: 2.0rem;
+}
+
+.why-card-title {
+    color: var(--neutral-800);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.why-card-desc {
+    color: var(--neutral-500);
+    font-size: 0.925rem;
+    line-height: 1.5rem;
+    margin-bottom: 0;
+}
+
+.read-more {
+    color: var(--primary-600);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    margin-top: 0.5rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.read-more:hover {
+    color: var(--primary-700);
+    text-decoration: underline;
+}

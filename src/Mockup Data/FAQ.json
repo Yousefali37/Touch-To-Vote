@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "ques": "How can I vote on decisions?",
+        "ans": "You can vote by logging in and selecting the decision you want to vote on.",
+        "type": "general"
+    },
+    {
+        "id": 2,
+        "ques": "Can I change my vote after submitting it?",
+        "ans": "No, votes cannot be changed once submitted to maintain integrity.",
+        "type": "general"
+    },
+    {
+        "id": 3,
+        "ques": "Is my vote anonymous?",
+        "ans": "Yes, all votes are anonymous to protect your privacy.",
+        "type": "general"
+    },
+    {
+        "id": 4,
+        "ques": "How are the results calculated?",
+        "ans": "Results are calculated based on the total number of votes received before the deadline.",
+        "type": "technical"
+    },
+    {
+        "id": 5,
+        "ques": "Can I see how others voted?",
+        "ans": "No, individual votes are private, but you can see the overall results once voting is complete.",
+        "type": "general"
+    },
+    {
+        "id": 6,
+        "ques": "What happens if there is a tie?",
+        "ans": "In case of a tie, the decision may go to a secondary vote or be resolved by a predefined rule.",
+        "type": "technical"
+    },
+    {
+        "id": 7,
+        "ques": "Who can create new voting topics?",
+        "ans": "Only authorized users, such as administrators or moderators, can create new topics.",
+        "type": "general"
+    },
+    {
+        "id": 8,
+        "ques": "How long does a voting session last?",
+        "ans": "The duration of a voting session depends on the settings defined by the administrators.",
+        "type": "technical"
+    },
+    {
+        "id": 9,
+        "ques": "Can I vote multiple times?",
+        "ans": "No, each user is allowed only one vote per decision to ensure fairness.",
+        "type": "general"
+    },
+    {
+        "id": 10,
+        "ques": "Do I need an account to vote?",
+        "ans": "Yes, you must create an account to vote and track your participation.",
+        "type": "general"
+    }
+]

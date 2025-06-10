@@ -1,0 +1,98 @@
+.vote-preference__options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+.vote-preference {
+    background-color: var(--primary-50);
+    min-height: 100vh;
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10rem;
+}
+
+.vote-preference__header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.vote-preference__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+}
+
+.title-highlight {
+    color: var(--primary-600);
+    background: linear-gradient(180deg, rgba(255,255,255,0) 60%, var(--primary-200) 60%);
+    padding: 0 var(--spacing-sm);
+}
+
+.vote-preference__subtitle {
+    font-size: 1.025rem;
+    color: var(--neutral-600);
+    font-weight: 400;
+}
+
+.vote-preference__options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 1200px;
+    width: 100%;
+}
+
+.vote-preference__card {
+    background-color: var(--neutral-50);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.vote-preference__card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.vote-preference__card--candidates {
+    border-left: 4px solid var(--primary-500);
+}
+
+.vote-preference__card--decisions {
+    border-left: 4px solid var(--accent-500);
+}
+
+.vote-preference__card-icon {
+    font-size: 2.25rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--neutral-700);
+}
+
+.vote-preference__card--candidates .vote-preference__card-icon {
+    color: var(--primary-600);
+}
+
+.vote-preference__card--decisions .vote-preference__card-icon {
+    color: var(--accent-600);
+}
+
+.vote-preference__card-title {
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--neutral-800);
+    margin-bottom: var(--spacing-sm);
+}
+
+.vote-preference__card-description {
+    font-size: 0.925rem;
+    color: var(--neutral-600);
+    line-height: var(--line-height-base);
+}

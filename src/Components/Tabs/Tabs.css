@@ -1,0 +1,113 @@
+.product-tabs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.tab-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-xs);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-sm);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab-button {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    min-height: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease-in-out;
+    color: var(--neutral-800);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.tab-button:hover {
+    background: var(--primary-900);
+    color: var(--primary-100);
+}
+
+.active-tab {
+    background: var(--primary-600);
+    color: var(--neutral-100);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tab-panel {
+    padding: var(--spacing-lg);
+    border-top: 1px solid var(--neutral-300);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    width: 100%;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tab-heading {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--neutral-900);
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .tab-buttons {
+        padding: var(--spacing-xxs);
+    }
+
+    .tab-button {
+        min-height: var(--spacing-lg);
+        font-size: var(--font-size-sm);
+    }
+
+    .tab-panel {
+        padding: var(--spacing-md);
+    }
+
+    .tab-heading {
+        font-size: var(--font-size-base);
+    }
+}
+
+@media (max-width: 768px) {
+    .tab-buttons {
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
+
+    .tab-button {
+        flex: 1 1 45%;
+        min-height: var(--spacing-xl);
+    }
+
+    .tab-panel {
+        padding: var(--spacing-md);
+    }
+}
+
+@media (max-width: 976px) {
+    .tab-button {
+        font-size: var(--font-size-sm);
+    }
+
+    .tab-heading {
+        font-size: var(--font-size-base);
+    }
+}

@@ -1,0 +1,54 @@
+.back-button {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: var(--primary-500);
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.back-button--fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateX(-15px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+.back-button:hover {
+    background: var(--primary-600);
+    border-color: var(--primary-600);
+    box-shadow: 0 6px 18px rgba(var(--primary-600-rgb), 0.3);
+    transform: scale(1.05);
+}
+
+.back-button__icon {
+    font-size: var(--font-size-base);
+    color: var(--neutral-100);
+    transition: color 0.3s ease-in-out;
+}
+
+.back-button:hover .back-button__icon {
+    color: var(--neutral-100);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .back-button {
+        width: 40px;
+        height: 40px;
+        padding: var(--spacing-xs);
+    }
+
+    .back-button__icon {
+        font-size: var(--font-size-sm);
+    }
+}
