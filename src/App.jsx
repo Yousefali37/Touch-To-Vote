@@ -32,6 +32,7 @@ import EditCandidates from './Dashboard/Candidates/Edit Candidate/EditCandidates
 import SessionReport from './Pages/Report/SessionReport';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import FAQ from './Components/Home/FAQ/FAQ'
 
 const theme = createTheme();
 
@@ -116,6 +117,8 @@ function App() {
 
             {/* Sessions Report */}
             <Route path='/Session-Report' element={<SessionReport />} />
+
+            <Route path='/FAQ' element={<FAQ from={true} />} />
 
           </Routes>
         </ThemeProvider>

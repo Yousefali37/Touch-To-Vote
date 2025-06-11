@@ -13,7 +13,7 @@ function PositionCard({ id, position, desc, duration, status }) {
                 <div className="position-card__content">
                     {/* Title */}
                     <h3 className="position-card__title">
-                        Position: <span className="position-card__title-value">{`${position.substring(0, 50)}`}</span>
+                        Position: <span className="position-card__title-value">{`${position.slice(0, 30)}...`}</span>
                     </h3>
 
                     {/* Description */}

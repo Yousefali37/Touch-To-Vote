@@ -1,9 +1,21 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
+import { useEffect, useState } from 'react';
 
 function Header({ page }) {
 
     const navigate = useNavigate();
+    const [admin, setadmin] = useState(false);
+
+    const userId = localStorage.getItem("user_id");
+
+
+    useEffect(() => {
+        if (userId === 1) {
+            setadmin(true);
+        }
+    }, [userId])
+
 
     return (
         <header className="header">
@@ -34,13 +46,20 @@ function Header({ page }) {
                                     <a href="#howitworks" className="header__nav-link">How it Works</a>
                                 </li>
                                 <li className="header__nav-item">
-                                    <a href="#contact" className="header__nav-link">Contact</a>
+                                    <a href="#faq" className="header__nav-link">FAQ</a>
                                 </li>
                             </ul>
                         ) : (
                             <ul className='header__nav-list'>
+                                {
+                                    admin && (
+                                        <li className="header__nav-item">
+                                            <Link to={'/Dashboard'} className="header__nav-link">Dashboard</Link>
+                                        </li>
+                                    )
+                                }
                                 <li className="header__nav-item">
-                                    <Link to={'/Dashboard'} className="header__nav-link">Dashboard</Link>
+                                    <Link to={'/FAQ'} className="header__nav-link">FAQ</Link>
                                 </li>
                             </ul>
                         )
