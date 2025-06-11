@@ -3,19 +3,18 @@ import './Header.css';
 import { useEffect, useState } from 'react';
 
 function Header({ page }) {
-
     const navigate = useNavigate();
-    const [admin, setadmin] = useState(false);
-
+    const [isAdmin, setIsAdmin] = useState(false);
     const userId = localStorage.getItem("user_id");
 
-
     useEffect(() => {
-        if (userId === 1) {
-            setadmin(true);
-        }
-    }, [userId])
+        setIsAdmin(userId === "1");
+    }, [userId]);
 
+    const handleLogOut = () => {
+        localStorage.removeItem("user_id");
+        navigate('/auth');
+    }
 
     return (
         <header className="header">
@@ -23,7 +22,7 @@ function Header({ page }) {
                 <div className="header__logo">
                     <h1 className="header__title" onClick={() => {
                         navigate('/');
-                        scroll(0, 0);
+                        window.scrollTo(0, 0);
                     }}>Touch To Vote</h1>
                 </div>
                 <nav className="header__nav">
@@ -51,13 +50,11 @@ function Header({ page }) {
                             </ul>
                         ) : (
                             <ul className='header__nav-list'>
-                                {
-                                    admin && (
-                                        <li className="header__nav-item">
-                                            <Link to={'/Dashboard'} className="header__nav-link">Dashboard</Link>
-                                        </li>
-                                    )
-                                }
+                                {isAdmin && (
+                                    <li className="header__nav-item">
+                                        <Link to={'/Dashboard'} className="header__nav-link">Dashboard</Link>
+                                    </li>
+                                )}
                                 <li className="header__nav-item">
                                     <Link to={'/FAQ'} className="header__nav-link">FAQ</Link>
                                 </li>
@@ -65,9 +62,10 @@ function Header({ page }) {
                         )
                     }
                 </nav>
-                <button className={`hero__button hero__button--primary ${page === "after-login" && "hero__button--primary-logout"}`} onClick={() => {
-                    navigate('/auth')
-                }}>
+                <button
+                    className={`hero__button hero__button--primary ${page === "after-login" && "hero__button--primary-logout"}`}
+                    onClick={handleLogOut}
+                >
                     {page !== "after-login" ? "Get Started" : "Log Out"}
                 </button>
             </div>
