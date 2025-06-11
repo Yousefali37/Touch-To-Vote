@@ -180,6 +180,26 @@
     transform: scale(1);
 }
 
+.position-card__read-more {
+    background: none;
+    border: none;
+    color: #0066cc;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 4px;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+.position-card__read-more:hover {
+    text-decoration: underline;
+}
+
+.position-card__title-value {
+    display: inline;
+    word-break: break-word;
+}
+
 /* Responsive adjustments */
 @media (max-width: 480px) {
     .position-card__container {

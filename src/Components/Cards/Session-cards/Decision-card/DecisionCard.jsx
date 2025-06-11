@@ -3,9 +3,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import './DecisionCard.css';
+import { useState } from "react";
 
 function DecisionCard({ id, desc, duration, status }) {
     const navigate = useNavigate();
+    const [showFullTitle, setShowFullTitle] = useState(false);
+    const maxTitleLength = 25;
+
+    const toggleTitle = () => {
+        setShowFullTitle(!showFullTitle);
+    };
+
+    const displayTitle = showFullTitle
+        ? desc
+        : desc.length > maxTitleLength
+            ? `${desc.slice(0, maxTitleLength)}...`
+            : desc;
 
     const handleCardClick = () => navigate('/Decision-session');
     const handleVoteClick = (e) => {
@@ -21,8 +34,17 @@ function DecisionCard({ id, desc, duration, status }) {
         <div className="decision-card decision-card--fade-in">
             <div className="decision-card__container" onClick={handleCardClick}>
                 <div className="decision-card__content">
-                    {/* Discription */}
-                    <h3 className="decision-card__title">{desc}</h3>
+                    Decision: <span className="position-card__title-value">
+                            {displayTitle}
+                            {desc.length && (
+                                <button 
+                                    onClick={toggleTitle} 
+                                    className="position-card__read-more fs-6"
+                                >
+                                    {showFullTitle ? ' Show Less' : ' Read More'}
+                                </button>
+                            )}
+                        </span>
                 </div>
 
                 {/* Duration */}

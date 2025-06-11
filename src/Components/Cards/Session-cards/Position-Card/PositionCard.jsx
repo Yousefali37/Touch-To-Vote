@@ -3,17 +3,40 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from "prop-types";
+import { useState } from 'react';
 
 function PositionCard({ id, position, desc, duration, status }) {
     const navigate = useNavigate();
+    const [showFullTitle, setShowFullTitle] = useState(false);
+    const maxTitleLength = 10;
+
+    const toggleTitle = () => {
+        setShowFullTitle(!showFullTitle);
+    };
+
+    const displayTitle = showFullTitle 
+        ? position 
+        : position.length > maxTitleLength 
+            ? `${position.slice(0, maxTitleLength)}...` 
+            : position;
 
     return (
         <div className="position-card position-card--fade-in">
             <div className="position-card__container">
                 <div className="position-card__content">
-                    {/* Title */}
+                    {/* Title with Read More */}
                     <h3 className="position-card__title">
-                        Position: <span className="position-card__title-value">{`${position.slice(0, 30)}...`}</span>
+                        Position: <span className="position-card__title-value">
+                            {displayTitle}
+                            {position.length && (
+                                <button 
+                                    onClick={toggleTitle} 
+                                    className="position-card__read-more fs-6"
+                                >
+                                    {showFullTitle ? ' Show Less' : ' Read More'}
+                                </button>
+                            )}
+                        </span>
                     </h3>
 
                     {/* Description */}
