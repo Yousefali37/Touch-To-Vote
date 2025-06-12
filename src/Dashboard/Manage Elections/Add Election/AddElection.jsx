@@ -127,28 +127,32 @@ function AddElection() {
 
             <div className="form-group">
                 <label htmlFor="start_date">Start Date *</label>
-                <DatePicker
-                    className={`datepicker ${errors.start_date ? "error" : ""}`}
+                <input
+                    type="date"
+                    id="start_date"
+                    className={`form-control ${errors.start_date ? "error" : ""}`}
                     value={election.start_date}
-                    onChange={(newValue) => {
-                        setElection(prev => ({ ...prev, start_date: newValue }));
+                    onChange={(e) => {
+                        setElection(prev => ({ ...prev, start_date: e.target.value }));
                         setErrors(prev => ({ ...prev, start_date: "", end_date: "" }));
                     }}
-                    disablePast
+                    min={new Date().toISOString().slice(0, 16)}
                 />
                 {errors.start_date && <span className="error-message">{errors.start_date}</span>}
             </div>
 
             <div className="form-group">
                 <label htmlFor="end_date">End Date *</label>
-                <DatePicker
-                    className={`datepicker ${errors.end_date ? "error" : ""}`}
+                <input
+                    type="date"
+                    id="end_date"
+                    className={`form-control ${errors.end_date ? "error" : ""}`}
                     value={election.end_date}
-                    onChange={(newValue) => {
-                        setElection(prev => ({ ...prev, end_date: newValue }));
+                    onChange={(e) => {
+                        setElection(prev => ({ ...prev, end_date: e.target.value }));
                         setErrors(prev => ({ ...prev, end_date: "" }));
                     }}
-                    minDate={election.start_date}
+                    min={election.start_date || new Date().toISOString().slice(0, 16)}
                 />
                 {errors.end_date && <span className="error-message">{errors.end_date}</span>}
             </div>

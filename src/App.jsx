@@ -33,6 +33,7 @@ import SessionReport from './Pages/Report/SessionReport';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import FAQ from './Components/Home/FAQ/FAQ'
+import Print from './Pages/Print/Print';
 
 const theme = createTheme();
 
@@ -119,6 +120,8 @@ function App() {
             <Route path='/Session-Report' element={<SessionReport />} />
 
             <Route path='/FAQ' element={<FAQ from={true} />} />
+
+            <Route path='/Print' element={<Print />} />
 
           </Routes>
         </ThemeProvider>

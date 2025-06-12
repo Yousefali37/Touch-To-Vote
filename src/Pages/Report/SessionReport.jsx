@@ -8,12 +8,13 @@ import {
     Legend,
     ArcElement
 } from 'chart.js';
-import { Bar, Pie } from 'react-chartjs-2'; // Changed Doughnut to Pie
+import { Bar, Pie } from 'react-chartjs-2';
 import ReportData from './ReportData';
 import HeroSection2 from './../../Components/Hero Section 2/HeroSection2';
 import './SessionReport.css';
 import GoBackBtn from './../../Components/Go Back btn/GoBackBtn';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Register Chart.js components
 ChartJS.register(
@@ -27,6 +28,7 @@ ChartJS.register(
 );
 
 const SessionReport = () => {
+    const navigate = useNavigate();
     const labels = ReportData.map(item => item.sessionTitle);
     const [user, setUser] = useState([]);
 
@@ -126,6 +128,12 @@ const SessionReport = () => {
 
     return (
         <div className="session-report">
+            <div className='button-group'>
+                <button className='button-group__button button-group__button--pdf' onClick={() => {
+                    navigate('/Print')
+                }}>Preview As PDF</button>
+                <button className='button-group__button button-group__button--print'>Print</button>
+            </div>
             <GoBackBtn to={'/Position-Sessions'} />
             <HeroSection2 title={`${labels.join(', ')} Session Report`} />
             <hr className="session-report__divider" />

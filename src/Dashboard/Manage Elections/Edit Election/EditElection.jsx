@@ -1,4 +1,3 @@
-import { DatePicker } from "@mui/x-date-pickers";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -11,11 +10,12 @@ function EditElection() {
     const [election, setElection] = useState({
         name: "",
         type: "",
-        start_date: null,
-        end_date: null,
-        status: "",
+        start_date: "",
+        end_date: "",
+        status: "upcoming",
         manager_id: ""
     });
+
     const [managers, setManagers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [errors, setErrors] = useState({});
@@ -23,32 +23,51 @@ function EditElection() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
-        setLoading(true);
-        Promise.all([
-            axios.get(`http://127.0.0.1:8000/api/elections/${id}`),
-            axios.get(`http://127.0.0.1:8000/api/users`)
-        ])
-            .then(([electionRes, usersRes]) => {
+        const fetchData = async () => {
+            try {
+                setLoading(true);
+                const [electionRes, usersRes] = await Promise.all([
+                    axios.get(`http://127.0.0.1:8000/api/elections/${id}`),
+                    axios.get(`http://127.0.0.1:8000/api/users`)
+                ]);
+
+                const electionData = electionRes.data;
+                const formattedStartDate = electionData.start_date 
+                    ? new Date(electionData.start_date).toISOString().slice(0, 16)
+                    : "";
+                const formattedEndDate = electionData.end_date 
+                    ? new Date(electionData.end_date).toISOString().slice(0, 16)
+                    : "";
+
                 setElection({
-                    name: electionRes.data.name,
-                    type: electionRes.data.type,
-                    start_date: electionRes.data.start_date ? new Date(electionRes.data.start_date) : null,
-                    end_date: electionRes.data.end_date ? new Date(electionRes.data.end_date) : null,
-                    status: electionRes.data.status,
-                    manager_id: electionRes.data.manager_id
+                    name: electionData.name,
+                    type: electionData.type,
+                    start_date: formattedStartDate,
+                    end_date: formattedEndDate,
+                    status: electionData.status || "upcoming",
+                    manager_id: electionData.manager_id
                 });
+
                 setManagers(usersRes.data.filter(user => user.role === 'manager'));
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                setErrors({ 
+                    general: error.response?.data?.message || 
+                    "Failed to load election data. Please try again later."
+                });
+            } finally {
                 setLoading(false);
-            })
-            .catch(error => {
-                setErrors({ general: "Failed to load data: " + error.message });
-                setLoading(false);
-            });
+            }
+        };
+
+        fetchData();
     }, [id]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setErrors({});
+        setSuccess("");
 
         const validationErrors = validateForm();
         if (Object.keys(validationErrors).length > 0) {
@@ -58,23 +77,35 @@ function EditElection() {
         }
 
         try {
-            const response = await axios.put(`http://127.0.0.1:8000/api/elections/${id}`, {
-                name: election.name,
+            const payload = {
+                name: election.name.trim(),
                 type: election.type,
-                start_date: election.start_date ? election.start_date.toISOString().split('T')[0] : null,
-                end_date: election.end_date ? election.end_date.toISOString().split('T')[0] : null,
+                start_date: election.start_date ? new Date(election.start_date).toISOString() : null,
+                end_date: election.end_date ? new Date(election.end_date).toISOString() : null,
                 status: election.status,
                 manager_id: parseInt(election.manager_id)
-            });
+            };
+
+            const response = await axios.put(
+                `http://127.0.0.1:8000/api/elections/${id}`,
+                payload,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+
             if (response.status === 200) {
                 setSuccess("Election updated successfully!");
-                setTimeout(() => {
-                    navigate("/manage-elections/view-elections");
-                }, 1500);
+                setTimeout(() => navigate("/manage-elections/view-elections"), 1500);
             }
         } catch (error) {
-            console.error("Error updating election:", error);
-            setErrors({ general: error.response?.data?.message || "Failed to update election. Please try again." });
+            console.error("Update error:", error);
+            const errorMsg = error.response?.data?.message || 
+                           error.response?.data?.error || 
+                           "Failed to update election. Please try again.";
+            setErrors({ general: errorMsg });
         } finally {
             setIsSubmitting(false);
         }
@@ -82,38 +113,48 @@ function EditElection() {
 
     const validateForm = () => {
         const errors = {};
+        const now = new Date();
 
-        if (!election.name.trim()) errors.name = "Election name is required";
-        if (!election.type) errors.type = "Election type is required";
-        if (!election.start_date) errors.start_date = "Start date is required";
-        if (!election.end_date) errors.end_date = "End date is required";
-        else if (election.start_date && election.end_date < election.start_date) {
+        if (!election.name.trim()) {
+            errors.name = "Election name is required";
+        } else if (election.name.trim().length < 3) {
+            errors.name = "Name must be at least 3 characters";
+        }
+
+        if (!election.type) {
+            errors.type = "Election type is required";
+        }
+
+        if (!election.start_date) {
+            errors.start_date = "Start date is required";
+        } else if (new Date(election.start_date) < now) {
+            errors.start_date = "Start date cannot be in the past";
+        }
+
+        if (!election.end_date) {
+            errors.end_date = "End date is required";
+        } else if (election.start_date && new Date(election.end_date) <= new Date(election.start_date)) {
             errors.end_date = "End date must be after start date";
         }
-        if (!election.manager_id) errors.manager_id = "Manager is required";
+
+        if (!election.manager_id) {
+            errors.manager_id = "Manager is required";
+        }
 
         return errors;
     };
 
-    const handleRadioChange = (e) => {
-        const type = e.target.value.toLowerCase();
-        setElection(prev => ({ ...prev, type }));
-        setErrors(prev => ({ ...prev, type: "" }));
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setElection(prev => ({ ...prev, [name]: value }));
+        setErrors(prev => ({ ...prev, [name]: "" }));
     };
 
     const handleStatusChange = (status) => {
         setElection(prev => ({ ...prev, status }));
     };
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setElection(prev => ({ ...prev, [name]: value }));
-        setErrors(prev => ({ ...prev, [name]: "" }));
-    };
-
-    if (loading) {
-        return <Loading />;
-    }
+    if (loading) return <Loading />;
 
     return (
         <form className="form-container" onSubmit={handleSubmit}>
@@ -125,6 +166,7 @@ function EditElection() {
                     {errors.general}
                 </div>
             )}
+            
             {success && (
                 <div className="alert alert-success fade-in">
                     {success}
@@ -140,36 +182,36 @@ function EditElection() {
                     className={`manage-session__input ${errors.name ? "error" : ""}`}
                     placeholder="Enter election name"
                     value={election.name}
-                    onChange={handleInputChange}
-                    required
+                    onChange={handleChange}
+                    maxLength={100}
                 />
                 {errors.name && <span className="error-message">{errors.name}</span>}
             </div>
 
             <div className="form-group">
                 <label htmlFor="start_date" className="manage-session__label">Start Date *</label>
-                <DatePicker
+                <input
+                    type="datetime-local"
+                    id="start_date"
+                    name="start_date"
                     className={`manage-session__datepicker ${errors.start_date ? "error" : ""}`}
                     value={election.start_date}
-                    onChange={(newValue) => {
-                        setElection(prev => ({ ...prev, start_date: newValue }));
-                        setErrors(prev => ({ ...prev, start_date: "", end_date: "" }));
-                    }}
-                    disablePast
+                    onChange={handleChange}
+                    min={new Date().toISOString().slice(0, 16)}
                 />
                 {errors.start_date && <span className="error-message">{errors.start_date}</span>}
             </div>
 
             <div className="form-group">
                 <label htmlFor="end_date" className="manage-session__label">End Date *</label>
-                <DatePicker
+                <input
+                    type="datetime-local"
+                    id="end_date"
+                    name="end_date"
                     className={`manage-session__datepicker ${errors.end_date ? "error" : ""}`}
                     value={election.end_date}
-                    onChange={(newValue) => {
-                        setElection(prev => ({ ...prev, end_date: newValue }));
-                        setErrors(prev => ({ ...prev, end_date: "" }));
-                    }}
-                    minDate={election.start_date}
+                    onChange={handleChange}
+                    min={election.start_date || new Date().toISOString().slice(0, 16)}
                 />
                 {errors.end_date && <span className="error-message">{errors.end_date}</span>}
             </div>
@@ -181,8 +223,7 @@ function EditElection() {
                     id="type"
                     className={`manage-session__select ${errors.type ? "error" : ""}`}
                     value={election.type}
-                    onChange={handleRadioChange}
-                    required
+                    onChange={handleChange}
                 >
                     <option value="" disabled>Select election type</option>
                     <option value="position">Position Voting</option>
@@ -194,27 +235,30 @@ function EditElection() {
             <div className="form-group">
                 <label className="manage-session__label">Status</label>
                 <div className="radio-group">
-                    <label className={election.status === "active" ? "selected" : ""}>
+                    <label className={`radio-label ${election.status === "active" ? "selected" : ""}`}>
                         <input
                             type="radio"
+                            name="status"
                             value="active"
                             checked={election.status === "active"}
                             onChange={() => handleStatusChange("active")}
                         />
                         Active
                     </label>
-                    <label className={election.status === "upcoming" ? "selected" : ""}>
+                    <label className={`radio-label ${election.status === "upcoming" ? "selected" : ""}`}>
                         <input
                             type="radio"
+                            name="status"
                             value="upcoming"
                             checked={election.status === "upcoming"}
                             onChange={() => handleStatusChange("upcoming")}
                         />
                         Upcoming
                     </label>
-                    <label className={election.status === "closed" ? "selected" : ""}>
+                    <label className={`radio-label ${election.status === "closed" ? "selected" : ""}`}>
                         <input
                             type="radio"
+                            name="status"
                             value="closed"
                             checked={election.status === "closed"}
                             onChange={() => handleStatusChange("closed")}
@@ -231,8 +275,7 @@ function EditElection() {
                     id="manager_id"
                     className={`manage-session__select ${errors.manager_id ? "error" : ""}`}
                     value={election.manager_id}
-                    onChange={handleInputChange}
-                    required
+                    onChange={handleChange}
                 >
                     <option value="">Select a manager</option>
                     {managers.map(manager => (
@@ -244,8 +287,17 @@ function EditElection() {
                 {errors.manager_id && <span className="error-message">{errors.manager_id}</span>}
             </div>
 
-            <button type="submit" className="form-submit-btn" disabled={isSubmitting}>
-                {isSubmitting ? "Updating..." : "Update Election"}
+            <button 
+                type="submit" 
+                className="form-submit-btn" 
+                disabled={isSubmitting}
+            >
+                {isSubmitting ? (
+                    <>
+                        <span className="spinner-border spinner-border-sm me-2"></span>
+                        Updating...
+                    </>
+                ) : "Update Election"}
             </button>
         </form>
     );

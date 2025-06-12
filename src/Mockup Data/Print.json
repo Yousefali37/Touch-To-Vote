@@ -1,0 +1,32 @@
+{
+    "election": {
+        "name": "Board Election 2025",
+        "date": "June 05, 2025",
+        "issuedDate": "June 06, 2025",
+        "issuedBy": "Election Commission"
+    },
+    "positions": [
+        {
+            "title": "Chairperson",
+            "candidates": [
+                {
+                    "name": "John Smith",
+                    "votes": 45,
+                    "isWinner": true
+                },
+                {
+                    "name": "Sarah Johnson",
+                    "votes": 30
+                },
+                {
+                    "name": "Michael Chen",
+                    "votes": 25
+                }
+            ]
+        }
+    ],
+    "admin": {
+        "name": "Admin Name",
+        "signature": "/signature-png-11553950078cev8m4ffw1.png"
+    }
+}
