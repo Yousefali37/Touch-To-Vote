@@ -65,7 +65,6 @@ function PositionSessions() {
         return <Loading />;
     }
 
-    console.log(filteredData)
 
     return (
         <div className="position-sessions">

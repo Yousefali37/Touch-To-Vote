@@ -21,7 +21,6 @@ function TableComponent({ endpoint, title, headers, dataFields, searchField, dat
             setLoading(true);
             axios.get(endpoint)
                 .then((res) => {
-                    console.log(res);
                     setData(Array.isArray(res.data) ? res.data : []);
                     setLoading(false);
                 })

@@ -35,7 +35,6 @@ function DecisionSessions() {
         fetchPositions();
     }, []);
 
-    console.log(data);
 
     useEffect(() => {
         const filtered = data.filter(item => {

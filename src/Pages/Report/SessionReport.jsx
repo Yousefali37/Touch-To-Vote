@@ -38,14 +38,12 @@ const SessionReport = () => {
 
     const navigate = useNavigate();
     const labels = filterData.map(item => item.sessionTitle);
-    const page = filterData.map(item => item.type);
     const [user, setUser] = useState([]);
 
     useEffect(() => {
         setUser(localStorage.getItem("user_id"));
     }, []);
 
-    console.log(filterData);
 
     const barData = {
         labels,
@@ -63,7 +61,6 @@ const SessionReport = () => {
         ]
     };
 
-    console.log(page);
 
     const pieData = {
         labels: ['Yes', 'No'],
