@@ -84,7 +84,7 @@
 
 .auth-overlay {
     background: linear-gradient(170deg, transparent 0%, var(--primary-800) 100%),
-        url('/pexels-shvetsa-6899156.jpg') no-repeat;
+        url('/pexels-shvetsa-6899156.webp') no-repeat;
     background-size: cover;
     color: var(--background);
     position: relative;

@@ -144,6 +144,7 @@ function Verifyfingerprint({ page, onSuccess }) {
                             <p className="verify-fingerprint__prompt">Hi {user?.name || 'User'}, {'Please Verify Your Fingerprint'}</p>
                             <div className="verify-fingerprint__image-container">
                                 <img
+                                    loading="lazy"
                                     src="/State-1.png"
                                     alt={page === "auth" ? "Fingerprint Verification" : "Fingerprint"}
                                     className='verify-fingerprint__image'
@@ -157,6 +158,7 @@ function Verifyfingerprint({ page, onSuccess }) {
                         <div className="verify-fingerprint__state verify-fingerprint__state--scanning">
                             <div className="verify-fingerprint__image-container">
                                 <img
+                                    loading="lazy"
                                     src="/State-2.svg"
                                     alt={page === "auth" ? "Verifying Fingerprint" : "Fingerprint Scanning"}
                                     className="verify-fingerprint__image verify-fingerprint__image--scanning"
@@ -172,6 +174,7 @@ function Verifyfingerprint({ page, onSuccess }) {
                             <h5 className="verify-fingerprint__success-message">You're Good to Go</h5>
                             <div className="verify-fingerprint__image-container">
                                 <img
+                                    loading="lazy"
                                     src="/State-3.png"
                                     alt={page === "auth" ? "Fingerprint Verified" : "Fingerprint Verified"}
                                     className="verify-fingerprint__image verify-fingerprint__image--success"

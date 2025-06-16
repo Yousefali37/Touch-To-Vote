@@ -42,7 +42,7 @@ function DecisionSessions() {
             const matchesStatus = !filters.status ||
                 item.election?.status.toLowerCase() === filters.status.toLowerCase();
             const matchesSearch = !searchQuery ||
-                item.description.toLowerCase().includes(searchQuery.toLowerCase());
+                item.election_id === Number(searchQuery);
 
             return matchesStatus && matchesSearch;
         });
@@ -87,8 +87,9 @@ function DecisionSessions() {
                                 id={item.election_id}
                                 position={item.position}
                                 desc={item.description}
-                                duration={item.duration}
                                 status={item.election.status}
+                                startDate={item.election.start_date}
+                                endDate={item.election.end_date}
                             />
                         </div>
                     ))}

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import './DecisionCard.css';
 import { useState } from "react";
 
-function DecisionCard({ id, desc, duration, status }) {
+function DecisionCard({ id, desc, startDate, endDate, status }) {
     const navigate = useNavigate();
     const [showFullTitle, setShowFullTitle] = useState(false);
     const maxTitleLength = 25;
@@ -20,28 +20,27 @@ function DecisionCard({ id, desc, duration, status }) {
             ? `${desc.slice(0, maxTitleLength)}...`
             : desc;
 
-    const handleCardClick = () => navigate('/Decision-session');
     const handleVoteClick = (e) => {
         e.stopPropagation();
         navigate(`/Decision-Session/${id}`);
     };
     const handleDetailsClick = (e) => {
         e.stopPropagation();
-        navigate(`/Session-Report`);
+        navigate(`/Session-Report/${id}`);
     };
 
     return (
         <div className="decision-card decision-card--fade-in">
-            <div className="decision-card__container" onClick={handleCardClick}>
+            <div className="decision-card__container">
                 <div className="decision-card__content">
                     Decision: <span className="position-card__title-value">
                             {displayTitle}
                             {desc.length && (
                                 <button 
-                                    onClick={toggleTitle} 
+                                    onClick={toggleTitle}
                                     className="position-card__read-more fs-6"
                                 >
-                                    {showFullTitle ? ' Show Less' : ' Read More'}
+                                    {showFullTitle ? ' Show Less' : ' Read More...'}
                                 </button>
                             )}
                         </span>
@@ -50,7 +49,7 @@ function DecisionCard({ id, desc, duration, status }) {
                 {/* Duration */}
                 <div className="decision-card__footer">
                     <FontAwesomeIcon icon={faClock} className="decision-card__icon" />
-                    <span className="decision-card__duration">Ends in: {duration}</span>
+                    <span className="decision-card__duration">"{startDate}" Till "{endDate}"</span>
                 </div>
 
                 <hr className="decision-card__divider" />

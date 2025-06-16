@@ -23,7 +23,7 @@ function FAQ({ from }) {
                 minHeight: from && "100vh"
             }}>
                 <h2 className="title">
-                    <span className="title-highlight">FAQ</span>
+                    <span className="title-highlight">Help</span>
                 </h2>
                 <p className="subtitle">
                     Got questions? We’ve got answers! Browse below for more help.

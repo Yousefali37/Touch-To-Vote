@@ -6,13 +6,13 @@ function Print() {
         <div className="print">
             <div className="print__header">
                 <div className="print__logo">
-                    <img src="/download-removebg-preview.png" alt="Company Logo" className="print__logo-image" width={150} />
+                    <img loading='lazy' src="/download-removebg-preview.png" alt="Company Logo" className="print__logo-image" width={150} />
                 </div>
                 <div className='print__badge'>
-                    <img src="/public/image-removebg-preview.png" alt="Election Badge" className="print__badge-image" width={150} />
+                    <img loading='lazy' src="/public/image-removebg-preview.png" alt="Election Badge" className="print__badge-image" width={150} />
                 </div>
                 <div className="print__badge">
-                    <img src="/2.png" alt="Election Badge" className="print__badge-image" width={100} />
+                    <img loading='lazy' src="/2.png" alt="Election Badge" className="print__badge-image" width={100} />
                 </div>
             </div>
             <div className="print__content">

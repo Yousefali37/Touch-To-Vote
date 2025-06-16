@@ -50,7 +50,7 @@ function ContactUs() {
 
                 <div className="contact__content">
                     <div className="contact__info">
-                        <img src="/Contact Us.png" alt="" className="contact-img" />
+                        <img src="/Contact Us.png" loading='lazy' alt="" className="contact-img" />
                     </div>
 
                     <div className="contact__form-container">

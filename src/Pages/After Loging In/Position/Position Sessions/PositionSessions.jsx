@@ -43,8 +43,7 @@ function PositionSessions() {
             const matchesStatus = !filters.status ||
                 item.election?.status.toLowerCase() === filters.status.toLowerCase();
             const matchesSearch = !searchQuery ||
-                item.position.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                item.description.toLowerCase().includes(searchQuery.toLowerCase());
+                item.election.election_id === Number(searchQuery);
 
             return matchesPosition && matchesStatus && matchesSearch;
         });
@@ -91,9 +90,10 @@ function PositionSessions() {
                                 id={data.election_id}
                                 position={data.position}
                                 desc={data.description}
-                                duration={data.duration}
                                 status={data.election.status}
-                            />
+                                startDate={data.election.start_date}
+                                endDate={data.election.end_date}
+                                />
                         </div>
                     ))}
                 </div>

@@ -183,7 +183,7 @@
 .position-card__read-more {
     background: none;
     border: none;
-    color: #0066cc;
+    color: var(--primary-900);
     cursor: pointer;
     padding: 0;
     margin-left: 4px;

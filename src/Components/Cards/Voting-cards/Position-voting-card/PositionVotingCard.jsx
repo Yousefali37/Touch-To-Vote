@@ -39,7 +39,7 @@ function PositionVotingCard({ id, name, position, isSelected, onVoteFor, bio, cv
             <div className="position-voting-card__header">
                 <div className="position-voting-card__info">
                     <div className="d-flex align-items-center gap-2">
-                        <img src={cvImage} alt="Candidate" className="position-voting-img rounded-circle profile-pic" />
+                        <img src={cvImage} alt="Candidate" loading="lazy" className="position-voting-img rounded-circle profile-pic" />
                         <div>
                             <h3 className="position-voting-card__name">{name}</h3>
                             <p className="position-voting-card__position">{position}</p>

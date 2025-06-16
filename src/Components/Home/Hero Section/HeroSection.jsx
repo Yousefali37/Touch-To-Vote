@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import './HeroSection.css';
-import votingIllustration from '/Political Candidate-cuate.png';
+import votingIllustration from '/Political Candidate-cuate.webp';
 
 function HeroSection() {
 

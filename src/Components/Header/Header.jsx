@@ -45,7 +45,7 @@ function Header({ page }) {
                                     <a href="#howitworks" className="header__nav-link">How it Works</a>
                                 </li>
                                 <li className="header__nav-item">
-                                    <a href="#faq" className="header__nav-link">FAQ</a>
+                                    <a href="#faq" className="header__nav-link">Help</a>
                                 </li>
                             </ul>
                         ) : (
@@ -56,7 +56,7 @@ function Header({ page }) {
                                     </li>
                                 )}
                                 <li className="header__nav-item">
-                                    <Link to={'/FAQ'} className="header__nav-link">FAQ</Link>
+                                    <Link to={'/FAQ'} className="header__nav-link">Help</Link>
                                 </li>
                             </ul>
                         )

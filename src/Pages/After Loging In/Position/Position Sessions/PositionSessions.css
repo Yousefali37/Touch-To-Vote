@@ -1,7 +1,6 @@
 .position-sessions {
     background-color: var(--primary-50);
     min-height: 100vh;
-    /* padding: var(--spacing-xl); */
     display: flex;
     flex-direction: column;
     align-items: center;

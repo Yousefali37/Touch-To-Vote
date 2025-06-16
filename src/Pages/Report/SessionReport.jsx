@@ -14,7 +14,7 @@ import HeroSection2 from './../../Components/Hero Section 2/HeroSection2';
 import './SessionReport.css';
 import GoBackBtn from './../../Components/Go Back btn/GoBackBtn';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // Register Chart.js components
 ChartJS.register(
@@ -28,35 +28,46 @@ ChartJS.register(
 );
 
 const SessionReport = () => {
+
+    const { id } = useParams();
+
+    const filterData = ReportData.filter((e) => {
+        const filterID = id ? e.Election_id == id : true;
+        return filterID;
+    })
+
     const navigate = useNavigate();
-    const labels = ReportData.map(item => item.sessionTitle);
+    const labels = filterData.map(item => item.sessionTitle);
+    const page = filterData.map(item => item.type);
     const [user, setUser] = useState([]);
 
     useEffect(() => {
         setUser(localStorage.getItem("user_id"));
     }, []);
 
-    console.log(user);
+    console.log(filterData);
 
     const barData = {
         labels,
         datasets: [
             {
                 label: 'Yes Votes',
-                data: ReportData.map(item => item.yes),
+                data: filterData.map(item => item.yes),
                 backgroundColor: 'rgba(75, 192, 192, 0.6)',
             },
             {
                 label: 'No Votes',
-                data: ReportData.map(item => item.no),
+                data: filterData.map(item => item.no),
                 backgroundColor: 'rgba(255, 99, 132, 0.6)',
             }
         ]
     };
 
+    console.log(page);
+
     const pieData = {
         labels: ['Yes', 'No'],
-        datasets: ReportData.map(item => ({
+        datasets: filterData.map(item => ({
             label: item.sessionTitle,
             data: [item.yes, item.no],
             backgroundColor: [
@@ -99,7 +110,7 @@ const SessionReport = () => {
     };
 
     const renderReportText = () => {
-        return ReportData.map((item, index) => {
+        return filterData.map((item, index) => {
             const yesPercentage = ((item.yes / item.votersNo) * 100).toFixed(1);
             const noPercentage = ((item.no / item.votersNo) * 100).toFixed(1);
 
@@ -118,7 +129,16 @@ const SessionReport = () => {
                             <strong>No Votes:</strong> {item.no} ({noPercentage}%)
                         </li>
                         <li className="session-report__report-list-item">
-                            <strong>Result:</strong> {item.yes > item.no ? 'Approved ✅' : 'Rejected ❌'}
+                            <strong>Result:</strong>{" "}
+                            {item.votingStyle === "all"
+                                ? item.yes === item.votersNo
+                                    ? "Approved ✅"
+                                    : "Rejected ❌"
+                                : item.votingStyle === "majority"
+                                    ? item.yes > item.votersNo / 2
+                                        ? "Approved ✅"
+                                        : "Rejected ❌"
+                                    : "Unknown voting style"}
                         </li>
                     </ul>
                 </div>
@@ -134,7 +154,7 @@ const SessionReport = () => {
                 }}>Preview As PDF</button>
                 <button className='button-group__button button-group__button--print'>Print</button>
             </div>
-            <GoBackBtn to={'/Position-Sessions'} />
+            <GoBackBtn to={-1} />
             <HeroSection2 title={`${labels.join(', ')} Session Report`} />
             <hr className="session-report__divider" />
             <div className="session-report__charts">
@@ -159,7 +179,7 @@ const SessionReport = () => {
                                     <span className="title-highlight">Voted Yes</span>
                                 </h2>
                                 <ul className="session-report__report-list">
-                                    {ReportData.map((item) => (
+                                    {filterData.map((item) => (
                                         <li key={item.id} className="session-report__report-list-item">
                                             {item.yespepole && item.yespepole.length > 0 ? (
                                                 item.yespepole.map((person, index) => (
@@ -181,7 +201,7 @@ const SessionReport = () => {
                                     <span className="title-highlight">Voted No</span>
                                 </h2>
                                 <ul className="session-report__report-list">
-                                    {ReportData.map((item) => (
+                                    {filterData.map((item) => (
                                         <li key={item.id} className="session-report__report-list-item">
                                             {item.nopepole && item.nopepole.length > 0 ? (
                                                 item.nopepole.map((person, index) => (

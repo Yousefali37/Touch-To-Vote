@@ -34,6 +34,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import FAQ from './Components/Home/FAQ/FAQ'
 import Print from './Pages/Print/Print';
+import NotFound from './Pages/Not Found/NotFound'
 
 const theme = createTheme();
 
@@ -110,18 +111,18 @@ function App() {
 
               {/* Reports Managment */}
               <Route path="manage-reports" element={<SessionReport />}>
-                <Route path='add-report' element={"<AddReport />"} />
-                <Route path='view-report' element={"<ViewReport />"} />
               </Route>
 
             </Route>
 
             {/* Sessions Report */}
-            <Route path='/Session-Report' element={<SessionReport />} />
+            <Route path='/Session-Report/:id' element={<SessionReport />} />
 
             <Route path='/FAQ' element={<FAQ from={true} />} />
 
             <Route path='/Print' element={<Print />} />
+
+            <Route path='*' element={<NotFound />} />
 
           </Routes>
         </ThemeProvider>

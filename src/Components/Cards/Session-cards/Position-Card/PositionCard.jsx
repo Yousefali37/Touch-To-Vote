@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from "prop-types";
 import { useState } from 'react';
 
-function PositionCard({ id, position, desc, duration, status }) {
+function PositionCard({ id, position, desc, startDate, endDate, status }) {
     const navigate = useNavigate();
     const [showFullTitle, setShowFullTitle] = useState(false);
     const maxTitleLength = 10;
@@ -33,7 +33,7 @@ function PositionCard({ id, position, desc, duration, status }) {
                                     onClick={toggleTitle} 
                                     className="position-card__read-more fs-6"
                                 >
-                                    {showFullTitle ? ' Show Less' : ' Read More'}
+                                    {showFullTitle ? ' Show Less' : ' Read More...'}
                                 </button>
                             )}
                         </span>
@@ -48,7 +48,7 @@ function PositionCard({ id, position, desc, duration, status }) {
                 {/* Duration */}
                 <div className="position-card__footer">
                     <FontAwesomeIcon icon={faClock} className="position-card__icon" />
-                    <span className="position-card__duration">Ends in: {duration}</span>
+                    <span className="decision-card__duration">"{startDate}" Till "{endDate}"</span>
                 </div>
 
                 <hr className="position-card__divider" />
@@ -64,7 +64,7 @@ function PositionCard({ id, position, desc, duration, status }) {
                     </button>
                     <button
                         className={`position-card__button ${status === "active" ? "position-card__button--secondary" : "position-card__button--primary"}`}
-                        onClick={() => navigate(`/Session-Report`)}
+                        onClick={() => navigate(`/Session-Report/${id}`)}
                         disabled={status === "active" ? true : false}
                     >
                         Session Details

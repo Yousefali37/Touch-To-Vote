@@ -21,7 +21,7 @@ function DashHome() {
                         <HeroSection2 title={"Admin Control Panel"} text={"Manage your voting system's candidates, decisions, and sessions"} />
                         <hr />
                         <div className="dashHome__img-container">
-                            <img src="/public/sentiment-analysis-concept-illustration.png" alt="" />
+                            <img src="/public/sentiment-analysis-concept-illustration.webp" loading="lazy" alt="" />
                         </div>
                     </div>
                 ) : (
